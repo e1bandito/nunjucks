@@ -1,0 +1,11 @@
+{% extends "layout/base.njk" %}
+
+{% set title = "default title" %}
+{% from 'header/header.njk' import header %}
+
+{% block content %}
+  {{ header(header1) }}
+  {{ header(header2) }}
+
+  {% include "footer/footer.njk" %}
+{% endblock %}

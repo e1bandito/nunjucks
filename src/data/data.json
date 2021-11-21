@@ -1,0 +1,13 @@
+{
+	"footer": {
+		"text": "footer lorem ipsum dolor"
+	},
+	"header1": {
+		"text1": "test main header text 1",
+		"text2": "test main header text 2"
+	},
+	"header2": {
+		"text1": "test sub header text 1",
+		"text2": "test sub header text 2"
+	}
+}

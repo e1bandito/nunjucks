@@ -1,0 +1,30 @@
+{
+  "name": "nunjucks-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp build",
+    "start": "npm run build && gulp serve"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "browser-sync": "^2.27.7",
+    "del": "^6.0.0",
+    "fs": "^0.0.1-security",
+    "gulp": "^4.0.2",
+    "gulp-data": "^1.3.1",
+    "gulp-merge-json": "^2.1.1",
+    "gulp-nunjucks-render": "^2.2.3",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-sass": "^5.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "normalize.css": "^8.0.1",
+    "postcss-minify": "^1.1.0",
+    "postcss-sort-media-queries": "^4.1.0",
+    "sass": "^1.43.4"
+  }
+}

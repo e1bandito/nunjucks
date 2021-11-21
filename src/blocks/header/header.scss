@@ -1,0 +1,9 @@
+header {
+  font-size: 30px;
+  color: tomato;
+  text-transform: uppercase;
+
+  & p {
+    margin: 0;
+  }
+}
