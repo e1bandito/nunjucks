@@ -12,6 +12,18 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const pcmq = require('postcss-sort-media-queries');
 const minify = require('postcss-minify');
+const sprite = require('gulp-svgstore');
+
+// svg sprite
+
+gulp.task('sprite', (done) => {
+  gulp
+    .src('src/assets/svg-sprite/*.svg')
+    .pipe(plumber())
+    .pipe(sprite())
+    .pipe(gulp.dest('build/assets'))
+  done();
+});
 
 // styles
 

@@ -1,9 +1,13 @@
 header {
   font-size: 30px;
-  color: tomato;
+  color: var(--mainColor);
   text-transform: uppercase;
 
   & p {
     margin: 0;
+  }
+
+  img svg {
+    fill: tomato;
   }
 }

@@ -1,6 +1,14 @@
 {% macro header(obj) %}
   <header class="header">
-    <p class="header__text">{{ obj.text1 }}</p>
-    <p class="header__text">{{ obj.text2 }}</p>
+    <div class="container">
+      <p class="header__text">{{ obj.text1 }}</p>
+      <p class="header__text">{{ obj.text2 }}</p>
+
+      <svg class="img">
+
+    <use xlink:href="./assets/svg-sprite.svg#test "></use>
+
+</svg>
+    </div>
   </header>
 {% endmacro %}
