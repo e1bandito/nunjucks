@@ -1,0 +1,71 @@
+@mixin lsr {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+@mixin max($value) {
+  @media (max-width: $value + 'px') {
+    @content;
+  }
+}
+
+@mixin min($value) {
+  @media (min-width: $value + 'px') {
+    @content;
+  }
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  padding-bottom: $height / $width * 100%;
+
+  & img {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@mixin clear-button {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  text-decoration: none;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  color: inherit;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@mixin font($name, $file, $weight) {
+  @font-face {
+    font-family: $name;
+    font-style: normal;
+    font-weight: $weight;
+    font-display: swap;
+    src: url('../fonts/' + $file + '.woff2') format('woff2'),
+      url('../fonts/' + $file + '.woff') format('woff');
+  }
+}
+
+@mixin full-font($name, $file, $weight) {
+  @font-face {
+    font-family: $name;
+    font-style: normal;
+    font-weight: $weight;
+    src: url('../fonts/' + $file + '.eot');
+    src: url('../fonts/' + $file + '.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/' + $file + '.woff2') format('woff2'),
+      url('../fonts/' + $file + '.woff') format('woff'),
+      url('../fonts/' + $file + '.otf') format('opentype'),
+      url('../fonts/' + $file + '.ttf') format('truetype'),
+      url('../fonts/' + $file + '.svg#' + $name) format('svg');
+  }
+}

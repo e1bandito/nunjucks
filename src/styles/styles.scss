@@ -1,3 +1,6 @@
 @import '../../node_modules/normalize.css/normalize';
+@import './general/variables';
+@import './general/mixins';
+@import './general/scaffolding';
 
 @import '../blocks/blocks';
