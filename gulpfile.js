@@ -13,6 +13,27 @@ const autoprefixer = require('autoprefixer');
 const pcmq = require('postcss-sort-media-queries');
 const minify = require('postcss-minify');
 const sprite = require('gulp-svgstore');
+const squoosh = require('gulp-squoosh');
+const path = require('path');
+
+// img
+gulp.task('img', (done) => {
+  gulp
+    .src(['src/assets/img/**/*.{png,jpg}'])
+    .pipe(
+      squoosh(({ filePath }) => ({
+        encodeOptions: {
+          avif: {},
+          webp: {},
+          ...(path.extname(filePath) === ".png"
+            ? { oxipng: {} }
+            : { mozjpeg: {} }),
+        },
+      }))
+    )
+    .pipe(gulp.dest('src/assets/img'))
+  done();
+});
 
 // svg sprite
 gulp.task('sprite', (done) => {
