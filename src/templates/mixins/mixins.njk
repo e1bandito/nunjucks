@@ -1,0 +1,5 @@
+{% macro icon(obj) %}
+  <svg width="{{ obj.width }}" height="{{ obj.height }}">
+    <use xlink:href="img/svg-sprite.svg#{{ obj.icon }}"
+  </svg>
+{% endmacro %}

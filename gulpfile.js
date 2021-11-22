@@ -15,18 +15,25 @@ const minify = require('postcss-minify');
 const sprite = require('gulp-svgstore');
 
 // svg sprite
-
 gulp.task('sprite', (done) => {
   gulp
     .src('src/assets/svg-sprite/*.svg')
     .pipe(plumber())
     .pipe(sprite())
-    .pipe(gulp.dest('build/assets'))
+    .pipe(gulp.dest('src/assets/img'))
   done();
 });
 
-// styles
+// copy
+gulp.task("copy", () => {
+  return gulp
+    .src(['src/assets/fonts/**', 'src/assets/img/**'], {
+      base: "src/assets",
+    })
+    .pipe(gulp.dest("build"));
+});
 
+// styles
 gulp.task('styles', (done) => {
   gulp
     .src('src/styles/styles.scss')
@@ -88,4 +95,4 @@ gulp.task('serve', () => {
 });
 
 // build
-gulp.task('build', gulp.series('clean', 'merge', gulp.parallel('template', 'styles')));
+gulp.task('build', gulp.series('clean', 'merge', gulp.parallel('copy', 'template', 'styles')));

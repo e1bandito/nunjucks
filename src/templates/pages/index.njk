@@ -1,11 +1,12 @@
 {% extends "layout/base.njk" %}
 
 {% set title = "default title" %}
+
 {% from 'header/header.njk' import header %}
+{% import 'mixins/mixins.njk' as mixins %}
 
 {% block content %}
   {{ header(header1) }}
-  {{ header(header2) }}
-
-  {% include "footer/footer.njk" %}
+  <p style="display: flex; align-items: center;">Lorem ipsum dolor {{ mixins.icon({width: 16, height: 16, icon: 'test'}) }}</p>
+  
 {% endblock %}
