@@ -3,6 +3,7 @@ const plumber = require('gulp-plumber');
 const data = require('gulp-data');
 const merge = require('gulp-merge-json');
 const nunjucksRender = require('gulp-nunjucks-render');
+const webpack = require("webpack-stream");
 const fs = require('fs');
 const server = require('browser-sync').create();
 const del = require('del');
@@ -15,6 +16,41 @@ const minify = require('postcss-minify');
 const sprite = require('gulp-svgstore');
 const squoosh = require('gulp-squoosh');
 const path = require('path');
+const argv = require('yargs').argv;
+
+const isProd = (argv.production) ? true : false;
+// const isProd = !isDev;
+
+console.log(isProd);
+
+let webpackConf = {
+  output: {
+    filename: "main.min.js",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loader: "babel-loader",
+        exclude: "/node_modules/",
+      },
+    ],
+  },
+  mode: (argv.production) ? "production" : "development",
+  devtool: 'source-map'
+};
+
+console.log(webpackConf.mode);
+
+// js
+gulp.task("js", () => {
+  return gulp
+    .src(["src/js/*.js", "!js/**/*.min.js"])
+    .pipe(plumber())
+    .pipe(webpack(webpackConf))
+    .pipe(gulp.dest("build/js"))
+    .pipe(server.stream())
+});
 
 // img
 gulp.task('img', (done) => {
@@ -113,7 +149,9 @@ gulp.task('serve', () => {
   gulp.watch('src/blocks/**/*.json', gulp.series('merge', 'template'));
   gulp.watch('src/blocks/**/*.+(scss|sass|css)', gulp.series('styles'));
   gulp.watch('src/styles/**/*.+(scss|sass|css)', gulp.series('styles'));
+  gulp.watch('src/blocks/**/*.js', gulp.series('js'));
+  gulp.watch('src/js/**/*.js', gulp.series('js'));
 });
 
 // build
-gulp.task('build', gulp.series('clean', 'merge', gulp.parallel('copy', 'template', 'styles')));
+gulp.task('build', gulp.series('clean', 'merge', gulp.parallel('copy', 'template', 'styles', 'js')));

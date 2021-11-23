@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
-    "start": "npm run build && gulp serve"
+    "start": "npm run build && gulp serve --dev"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
     "autoprefixer": "^10.4.0",
+    "babel-loader": "^8.2.3",
     "browser-sync": "^2.27.7",
     "del": "^6.0.0",
     "fs": "^0.0.1-security",
@@ -27,6 +30,8 @@
     "normalize.css": "^8.0.1",
     "postcss-minify": "^1.1.0",
     "postcss-sort-media-queries": "^4.1.0",
-    "sass": "^1.43.4"
+    "sass": "^1.43.4",
+    "webpack-stream": "^7.0.0",
+    "yargs": "^17.2.1"
   }
 }
