@@ -17,11 +17,10 @@ const sprite = require('gulp-svgstore');
 const squoosh = require('gulp-squoosh');
 const path = require('path');
 const argv = require('yargs').argv;
+const gulpIf = require('gulp-if');
 
 const isProd = (argv.production) ? true : false;
-// const isProd = !isDev;
-
-console.log(isProd);
+const isDev = !isProd;
 
 let webpackConf = {
   output: {
@@ -39,8 +38,6 @@ let webpackConf = {
   mode: (argv.production) ? "production" : "development",
   devtool: 'source-map'
 };
-
-console.log(webpackConf.mode);
 
 // js
 gulp.task("js", () => {
@@ -94,10 +91,11 @@ gulp.task("copy", () => {
 gulp.task('styles', (done) => {
   gulp
     .src('src/styles/styles.scss')
-    .pipe(sourcemaps.init())
+    .pipe(gulpIf(isDev, sourcemaps.init()))
     .pipe(sass().on('error', sass.logError))
-    .pipe(postcss([autoprefixer(), pcmq(), minify()]))
-    .pipe(sourcemaps.write())
+    .pipe(postcss([autoprefixer()]))
+    .pipe(gulpIf(isProd, postcss([pcmq(), minify()])))
+    .pipe(gulpIf(isDev, sourcemaps.write()))
     .pipe(gulp.dest('./build/css'))
     .pipe(server.stream());
   done()

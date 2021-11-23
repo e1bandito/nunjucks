@@ -5,6 +5,12 @@
 {% from 'header/header.njk' import header %}
 {% import 'mixins/mixins.njk' as mixins %}
 
+{% block head %}
+  {{super()}}
+  <meta>
+
+{% endblock %}
+
 {% block content %}
   {{ header(header1) }}
   <p style="display: flex; align-items: center;">Lorem ipsum dolor {{ mixins.icon({width: 16, height: 16, icon: 'test'}) }}</p>
